@@ -6,7 +6,7 @@
 
 ## Description
 
-Command and Controll server with custom payloads.
+Command and Control server with custom payloads.
 
 ![GitHub](https://img.shields.io/github/license/YourIbexCapra/configs?label=license)
 [![Build](https://github.com/YourIbexCapra/configs/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/YourIbexCapra/configs/actions/workflows/main.yml)
