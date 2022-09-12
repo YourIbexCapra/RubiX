@@ -35,7 +35,17 @@ namespace RubiX
                 break;
             }
 
+            using (Loader loader = new Loader("Shutting down!"))
+            {
+                loader.Start();
+                // Close all workers.
+                Thread.Sleep(10000);
+            }
+
+            // Done. Exit.
             IO.Out("\nDone!\n\n", ConsoleColor.Green);
+
+
         }
     }
 }
