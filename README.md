@@ -37,13 +37,13 @@ Command and Control server with custom payloads.
 
 - ## Setup
 
-  - ### Clone
+- ### Clone
 
     ```shell
     git clone https://github.com/YourIbexCapra/RubiX.git
     ```
 
-  - ## Start
+- ## Start
 
     ```shell
     dotnet run <args>
