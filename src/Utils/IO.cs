@@ -1,32 +1,37 @@
-
+using RubiX.Interface;
 namespace RubiX.Utils
 {
     class IO
     {
-        // Print out.
-        public static void Out(string msg, ConsoleColor color)
+        // Print pretty.
+        public static void PPrint(string msg, ConsoleColor color)
         {
             Console.ForegroundColor = color;
             Console.Write(msg);
             Console.ResetColor();
         }
 
+        // Multi Out in single line.
+        public static void Out<T>(params T[] msgs) where T : class, IFormat
+        {
+            foreach (T msg in msgs)
+            {
+                PPrint(msg.Value, msg.Color);
+            }
+        }
 
         // Take user input.
         public static string In(string pwd = "test", string arg = "test")
         {
-            // Take user input.
-            Out("\n╭─[", ConsoleColor.Cyan);
-            Out(pwd, ConsoleColor.Red);
-            Out("]", ConsoleColor.Cyan);
-            Out("(", ConsoleColor.Cyan);
-            Console.Write("💀");
-            Out(")", ConsoleColor.Cyan);
-            Out("[", ConsoleColor.Cyan);
-            Out(arg, ConsoleColor.Red);
-            Out("]", ConsoleColor.Cyan);
-            Out("\n╰─", ConsoleColor.Cyan);
-            Out("λ ", ConsoleColor.Yellow);
+
+            Out<Format>(new Format(
+                "\n╭─[", ConsoleColor.Cyan),
+                new Format(pwd, ConsoleColor.Red),
+                new Format("](💀)[", ConsoleColor.Cyan),
+                new Format(arg, ConsoleColor.Red),
+                new Format("]\n╰─", ConsoleColor.Cyan),
+                new Format("λ ", ConsoleColor.Yellow)
+                );
 
             string input = "";
 
@@ -53,9 +58,10 @@ namespace RubiX.Utils
         public static void Logo()
         {
             Console.Clear();
-            Out("  ______ _     _ ______  _____ _     _\n |_____/ |     | |_____]   |    \\___/ \n |    \\_ |_____| |_____] __|__ _/   \\_\n", ConsoleColor.Red);
-            Out("\n Made with 💗 by YourIbexCapra! ", ConsoleColor.Blue);
-            Out("v1.0.0\n", ConsoleColor.Cyan);
+            Out<Format>(
+                new Format("  ______ _     _ ______  _____ _     _\n |_____/ |     | |_____]   |    \\___/ \n |    \\_ |_____| |_____] __|__ _/   \\_\n", ConsoleColor.Red),
+                new Format("\n Made with 💗 by YourIbexCapra! ", ConsoleColor.Blue),
+                new Format("v1.0.0\n", ConsoleColor.Cyan));
         }
 
     }

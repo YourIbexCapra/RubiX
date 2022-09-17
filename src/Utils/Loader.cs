@@ -36,7 +36,7 @@ namespace RubiX.Utils
         private void Spin()
         {
             Console.Write("\n");
-            IO.Out(this.msg, ConsoleColor.Yellow);
+            IO.Out<Format>(new Format(this.msg, ConsoleColor.Yellow));
 
             while (active)
             {
@@ -48,7 +48,7 @@ namespace RubiX.Utils
         private void Draw(char c)
         {
             Console.SetCursorPosition(this.msg.Length + 1, Console.CursorTop);
-            IO.Out(c.ToString(), ConsoleColor.Red);
+            IO.Out<Format>(new Format(c.ToString(), ConsoleColor.Red));
             Console.Write("\r");
         }
 

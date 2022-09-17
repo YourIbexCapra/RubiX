@@ -4,6 +4,8 @@ namespace RubiX
 {
     class Program
     {
+        static List<Task> tasks = new List<Task>();
+
         static void Main(string[] args)
         {
             // Print logo.
@@ -27,25 +29,26 @@ namespace RubiX
                         continue;
 
                     default:
-                        IO.Out("\nInvalid command: ", ConsoleColor.Yellow);
-                        IO.Out(input + "\n", ConsoleColor.Red);
+                        IO.Out<Format>(
+                            new Format("\nInvalid command: ", ConsoleColor.Yellow),
+                            new Format(input + "\n", ConsoleColor.Red));
+
                         continue;
                 }
 
                 break;
             }
 
-            using (Loader loader = new Loader("Shutting down!"))
-            {
-                loader.Start();
-                // Close all workers.
-                Thread.Sleep(10000);
-            }
+            if (tasks.Count > 0)
+                using (Loader loader = new Loader("Shutting down!"))
+                {
+                    loader.Start();
+                    // Close all workers.
+                    Thread.Sleep(10000);
+                }
 
             // Done. Exit.
-            IO.Out("\nDone!\n\n", ConsoleColor.Green);
-
-
+            IO.Out<Format>(new Format("\nDone!\n\n", ConsoleColor.Green));
         }
     }
 }
